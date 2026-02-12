@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #ff4e8a, #ff9ec6, #ff4e8a);
+    background-size: 300% 300%;
+    animation: gradientMove 6s infinite alternate;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+@keyframes gradientMove {
+    0% {background-position: left;}
+    100% {background-position: right;}
+}
+
+.container {
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.6);
+    color: white;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {text-shadow: 0 0 10px #fff;}
+    to {text-shadow: 0 0 25px #ff1e78;}
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: #ff1e78;
+    color: white;
+    box-shadow: 0 0 15px #ff1e78;
+}
+
+#yesBtn:hover {
+    background: white;
+    color: #ff1e78;
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background: white;
+    color: #ff1e78;
+    position: absolute;
+}
+
+.celebrate {
+    position: absolute;
+    font-size: 30px;
+    animation: floatUp 2s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {opacity: 1; transform: translateY(0);}
+    100% {opacity: 0; transform: translateY(-200px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? 💖</h1>
+    <p>You make my world brighter every single day 🌹</p>
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 😢</button>
+</div>
+
+<!-- Romantic Background Music -->
+<audio id="bgMusic" loop>
+    <!-- Replace the link below with your own romantic song -->
+    <source src="tum_hi_ho_piano.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+// Start music on first interaction (browser policy safe)
+document.body.addEventListener("click", function() {
+    bgMusic.play();
+}, { once: true });
+
+// Move "No" button randomly when hovered
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Celebration effect on Yes click
+yesBtn.addEventListener("click", function() {
+    for (let i = 0; i < 25; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("celebrate");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 2000);
+    }
+    alert("Yayyyyy!!! 💕 I Love Youuuu 💕");
+});
+</script>
+
+</body>
+</html>
